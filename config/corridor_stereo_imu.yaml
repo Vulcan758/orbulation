@@ -1,0 +1,18 @@
+orbslam_ros:
+  ros__parameters:
+    camera_setup: "stereo"
+    imu_used: true
+    visualization: false
+
+    vocabulary_path: "/home/mahir/orbulating/pyorbslam3/vocabulary/ORBvoc.txt"
+    config: "/home/mahir/orbulating/pyorbslam3/configs/tumvi/stereo_inertial.yaml"
+
+    left_cam_topic: "/cam0/image_raw"
+    right_cam_topic: "/cam1/image_raw"
+    imu_topic: "/imu0"
+
+    odom_topic: "/orbslam/odometry"
+    pose_topic: "/orbslam/pose"
+    state_topic: "/orbslam/tracking_state"
+
+    save_trajectory_path: "/home/mahir/orbulating/orb_ws/traj_corridor_stereo_imu.txt"

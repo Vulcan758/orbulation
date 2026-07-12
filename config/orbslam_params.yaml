@@ -1,0 +1,15 @@
+orbslam_ros: # This must match the name of your node
+  ros__parameters:
+    camera_setup: "rgbd"
+    imu_used: true
+    # vocabulary_path: "/path/to/your/ORBvoc.txt"
+    visualization: true
+    config: /home/mahir/orbulating/ORB-SLAM-Python/examples/config/TUM-VI.yaml
+
+    # Topics
+    left_cam_topic: "/camera/left/image_raw"
+    right_cam_topic: "/camera/right/image_raw"
+    rgb_cam_topic: "/camera/rgb/image_color"
+    depth_cam_topic: "/camera/depth/image_raw"
+    mono_cam_topic: "/camera/image_raw"
+    imu_topic: "/camera/imu"

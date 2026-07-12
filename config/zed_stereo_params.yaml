@@ -1,0 +1,33 @@
+zed_stereo_ros:
+  ros__parameters:
+    video_device: -1          # auto-detect by name
+    frame_width: 1344         # side-by-side (672 per eye)
+    frame_height: 376
+    fps: 30.0
+    # calibrated 2026-07-09: V4L2 frames are stamped ~80 ms after true capture
+    image_time_offset: -0.08
+
+    left_image_topic: "/zed/left/image_raw"
+    right_image_topic: "/zed/right/image_raw"
+    imu_topic: "/zed/imu/data"
+    mag_topic: "/zed/imu/mag"
+    publish_environment: true
+
+orbslam_ros:
+  ros__parameters:
+    camera_setup: "stereo"
+    imu_used: true
+    visualization: false
+
+    vocabulary_path: "/home/mahir/orbulating/pyorbslam3/vocabulary/ORBvoc.txt"
+    config: "/home/mahir/orbulating/orb_ws/src/orbulation/config/camera_params/zed2i.yaml"
+
+    left_cam_topic: "/zed/left/image_raw"
+    right_cam_topic: "/zed/right/image_raw"
+    imu_topic: "/zed/imu/data"
+    # live camera: give the synchronizer a bit more slack than a bag
+    sync_slop: 0.02
+
+    odom_topic: "/orbslam/odometry"
+    pose_topic: "/orbslam/pose"
+    state_topic: "/orbslam/tracking_state"
