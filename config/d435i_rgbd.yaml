@@ -1,15 +1,22 @@
-orbslam_ros: # This must match the name of your node
+orbslam_ros:
   ros__parameters:
     camera_setup: "rgbd"
     imu_used: false
-    # vocabulary_path: "/path/to/your/ORBvoc.txt"
-    visualization: true
-    config: /home/mahir/orbulating/orb_ws/src/orbulation/config/camera_params/realsense/rgbd/d435i.yaml
+    visualization: false
 
-    # Topics
-    # left_cam_topic: "/camera/left/image_raw"
-    # right_cam_topic: "/camera/right/image_raw"
+    vocabulary_path: "/home/mahir/orbulating/pyorbslam3/vocabulary/ORBvoc.txt"
+    config: "/home/mahir/orbulating/orb_ws/src/orbulation/config/camera_params/realsense/rgbd/d435i.yaml"
+
     rgb_cam_topic: "/camera/camera/color/image_raw"
-    depth_cam_topic: "/camera/camera/depth/image_rect_raw"
-    # mono_cam_topic: "/camera/image_raw"
-    # imu_topic: "/camera/camera/imu"
+    # Must be the aligned stream (driver arg align_depth.enable:=true), not
+    # /camera/camera/depth/image_rect_raw which sits in the infra1 frame
+    depth_cam_topic: "/camera/camera/aligned_depth_to_color/image_raw"
+
+    sync_slop: 0.035
+
+    odom_topic: "/orbslam/odometry"
+    pose_topic: "/orbslam/pose"
+    state_topic: "/orbslam/tracking_state"
+
+    odom_frame: "odom"
+    base_frame: "camera_link"

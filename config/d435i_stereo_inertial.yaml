@@ -1,0 +1,26 @@
+orbslam_ros:
+  ros__parameters:
+    camera_setup: "stereo"
+    imu_used: true
+    visualization: false
+
+    vocabulary_path: "/home/mahir/orbulating/pyorbslam3/vocabulary/ORBvoc.txt"
+    config: "/home/mahir/orbulating/orb_ws/src/orbulation/config/camera_params/realsense/stereo-inertial/d435i.yaml"
+
+    # Infrared pair: global shutter and hardware-rectified.
+    # Requires the driver to run with depth_module.emitter_enabled:=0
+    left_cam_topic: "/camera/camera/infra1/image_rect_raw"
+    right_cam_topic: "/camera/camera/infra2/image_rect_raw"
+    # Requires the driver to run with unite_imu_method:=2
+    imu_topic: "/camera/camera/imu"
+
+    # infra1/infra2 are hardware-synchronised, so they share a stamp exactly;
+    # a tight slop keeps mismatched pairs out
+    sync_slop: 0.005
+
+    odom_topic: "/orbslam/odometry"
+    pose_topic: "/orbslam/pose"
+    state_topic: "/orbslam/tracking_state"
+
+    odom_frame: "odom"
+    base_frame: "camera_link"
